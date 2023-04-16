@@ -1,13 +1,16 @@
-<template >
+<template>
   <div>
-    <h1>reg</h1>
   </div>
 </template>
 <script>
+import { mapStores } from 'pinia';
+import { useIndexStore } from '../stores/index'
 export default {
-
+  mounted() {
+  },
+  computed: {
+    ...mapStores(useIndexStore)
+  }
 }
 </script>
-<style lang="">
-  
-</style>
+<style lang="css"></style>

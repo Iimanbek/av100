@@ -1,3 +1,5 @@
+
+<!-- -------------------------Profile From Settings----------------------------- -->
 <template>
     <div class="container">
         <div class="main_section_wrapper">
@@ -75,23 +77,33 @@
                     <v-radio-group>
                         <h4>Уведомления</h4>
                         <div>
-                            <v-radio color="success" value="off_radio" label="Выкл" name="messages"
-                                id="radio_off"></v-radio>
+                            <v-sheet width="300">
+                                <v-radio color="success" value="off_radio" label="Выкл" name="messages"
+                                    id="radio_off"></v-radio>
+                                <v-divider></v-divider>
+                            </v-sheet>
                         </div>
                         <div>
-                            <v-radio color="success" value="Push" name="messages" id="push_radio" label="Push"></v-radio>
+                            <v-sheet width="300">
+                                <v-sheet width="300"></v-sheet>
+                                <v-radio color="success" value="Push" name="messages" id="push_radio"
+                                    label="Push"></v-radio>
+                                <v-divider></v-divider>
+                            </v-sheet>
                         </div>
                         <div>
                             <v-radio color="success" name="messages" value="email" label="Email"></v-radio>
                             <v-sheet width="300">
                                 <v-text-field v-model="email" required :rules="rules"
                                     label=".....@gmail.com"></v-text-field>
+                                <v-divider></v-divider>
                             </v-sheet>
                         </div>
                         <div>
                             <v-radio color="success" name="messages" value="telegram_id" label="Telegram ID"></v-radio>
                             <v-sheet width="300">
-                                <v-text-field required :rules="rules"></v-text-field>
+                                <v-sheet width="300"></v-sheet>
+                                <v-text-field required :rules="rules" label="@example"></v-text-field>
                             </v-sheet>
                         </div>
                     </v-radio-group>
@@ -105,15 +117,17 @@
                     <p class="form__inner__des">Выберите, каким образом будет открываться детальное представление выбранного
                         вами транспорта.</p>
                     <v-radio-group>
-                        <div>
+                        <div class="radio_group_wrap">
                             <v-radio color="success" value="in_window" label="В карточку текущем окне"
                                 name="cards"></v-radio>
+                            <v-divider></v-divider>
                         </div>
-                        <div>
+                        <div class="radio_group_wrap">
                             <v-radio color="success" value="different_window" label="В карточку отдельном окне"
                                 name="cards"></v-radio>
+                            <v-divider></v-divider>
                         </div>
-                        <div>
+                        <div class="radio_group_wrap">
                             <v-radio color="success" value="to_source" label="На источник" name="cards"></v-radio>
                         </div>
                     </v-radio-group>
@@ -154,7 +168,7 @@ export default {
                 value => !!value || 'Required.',
                 value => (value || '').length <= 20 || 'Max 20 characters',
             ],
-            select: { state: 'Florida', abbr: 'FL' },
+            select: { state: 'Moscow', abbr: 'GMT +3' },
             items: [
                 { state: 'Moscow', abbr: 'GMT +3' },
                 { state: 'Kaliningrad', abbr: 'GMT +3' },
@@ -288,5 +302,9 @@ export default {
 .form__inner__des {
     color: #686869;
     margin-bottom: 20px;
+}
+
+.radio_group_wrap {
+    width: 300px;
 }
 </style>
