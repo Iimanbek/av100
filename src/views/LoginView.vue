@@ -33,8 +33,8 @@ export default {
         async login() {
             await this.indexStore.getUserAccaunt()
             if (this.indexStore.response.status == 200) {
+                await this.$router.replace(`/user/${this.indexStore.user_data.user.id}`)
                 localStorage.setItem("user", JSON.stringify(this.indexStore.user_data));
-                await this.$router.push(`/user/${this.indexStore.user_data.user.id}`)
             }
         }
     },
