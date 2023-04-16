@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+const user = localStorage.getItem("user") || null;
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,7 @@ const router = createRouter({
       path: "/user/:id",
       name: "user",
       component: () => import("../views/ProfileView.vue"),
+      redirect: user ? "" : "/login",
     },
   ],
 });

@@ -5,43 +5,24 @@ export const useIndexStore = defineStore("index", {
   state: () => ({
     login_data: "",
     password_data: "",
+    user_data: "",
+    response: null,
   }),
   actions: {
-    getUserAccaunt() {
-      // await axios.post(
-      //   "https://api.av100.ru/v3/login",
-      //   {
-      //     login: this.login_data,
-      //     password: this.password_data,
-      //     fromuser: 0,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      axios
-        .post("https://api.av100.ru/v3/login", {
-          // login: this.login_data,
-          // password: this.password_data,
+    async getUserAccaunt() {
+      this.response = await axios.post(
+        "https://api.av100.ru/v3/login",
+        {
           login: "9678622972",
           password: "8680026651",
-          fromuser: 0,
-        })
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-
-      //console.log(result.data.data); // '{"name":"John Doe"}'
-      //console.log(result.data.headers["Content-Type"]); // 'application/json',
+        },
+        {
+          headers: { "X-Api-Key": "8bcfb6e1-4fa8-4fae-872c-a435bbdbe8d9" },
+        }
+      );
+      this.user_data = await this.response.data;
     },
-    async registr() {},
+    createUserAcc() {},
     async save_profile() {},
   },
 });

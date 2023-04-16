@@ -5,7 +5,7 @@
             <v-form fast-fail @submit.prevent>
                 <v-text-field v-model="indexStore.login_data" label="Login" :rules="LoginRules"></v-text-field>
                 <v-text-field :rules="passwordRules" v-model="indexStore.password_data" label="Password"></v-text-field>
-                <v-btn @click="indexStore.getUserAccaunt" color="green" type="submit" block class="mt-2">Submit</v-btn>
+                <v-btn @click="login" color="green" type="submit" block class="mt-2">Submit</v-btn>
             </v-form>
         </v-sheet>
     </div>
@@ -29,6 +29,15 @@ export default {
         ],
         lastName: '123',
     }),
+    methods: {
+        async login() {
+            await this.indexStore.getUserAccaunt()
+            if (this.indexStore.response.status == 200) {
+                localStorage.setItem("user", JSON.stringify(this.indexStore.user_data));
+                await this.$router.push(`/user/${this.indexStore.user_data.user.id}`)
+            }
+        }
+    },
     mounted() {
     },
     computed: {
