@@ -1,7 +1,7 @@
-<template >
-  <div>
-
-  </div>
+<template>
+    <div>
+        <h1>log</h1>
+    </div>
 </template>
 <script>
 export default {
@@ -9,5 +9,5 @@ export default {
 }
 </script>
 <style lang="">
-  
+    
 </style>

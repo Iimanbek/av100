@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createStore } from 'vuex'
 import { createVuetify } from 'vuetify'
 
 import App from './App.vue'
@@ -21,5 +22,6 @@ const app = createApp(App)
 
 app.use(vuetify)
 app.use(createPinia())
+app.use(createStore())
 app.use(router)
 app.mount('#app')

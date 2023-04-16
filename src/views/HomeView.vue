@@ -1,5 +1,5 @@
 <script>
-import Form from '../components/Form.vue';
+// import Form from '../components/Form.vue';
 export default {
   data() {
     return {
@@ -7,13 +7,13 @@ export default {
     }
   },
   components: {
-    'v-form': Form
+    // 'v-form': Form
   }
 }
 </script>
 
 <template>
   <div>
-    <v-form />
+    <!-- <v-form /> -->
   </div>
 </template>
