@@ -30,7 +30,7 @@ export const useIndexStore = defineStore("index", {
       companyid: 0,
       calltype: "",
       enableaudio: true,
-      locklentaupdate: true,
+      locklentaupdate: false,
       erased: 0,
       os: "",
       sipid: "",

@@ -158,10 +158,11 @@
                         </div>
                     </v-sheet>
                     <div>
-                        <v-checkbox color="#2dc574" label="Автоматически переходить к новым обновлениям"></v-checkbox>
+                        <v-checkbox color="#2dc574" v-model="lenta"
+                            label="Автоматически переходить к новым обновлениям"></v-checkbox>
                     </div>
                     <div>
-                        <v-checkbox color="#2dc574" v-model="lenta" label="Включить цвета в ленте"></v-checkbox>
+                        <v-checkbox color="#2dc574" v-model="colorLenta" label="Включить цвета в ленте"></v-checkbox>
                     </div>
                 </div>
             </div>
@@ -177,6 +178,7 @@ import { mapStores } from 'pinia';
 export default {
     data() {
         return {
+            colorLenta: false,
             lenta: false,
             go_cart: '',
             calltypeLocal: '',
@@ -200,6 +202,12 @@ export default {
         ...mapStores(useIndexStore)
     },
     watch: {
+        colorLenta: function (val) {
+            this.indexStore.user_settings.colorlenta = val
+        },
+        lenta: function (val) {
+            this.indexStore.user_settings.locklentaupdate = val
+        },
         select: function (val) {
             this.indexStore.user_settings.timezone = val
         },
