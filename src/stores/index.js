@@ -105,7 +105,6 @@ export const useIndexStore = defineStore("index", {
     },
     async save_profile(id) {
       const userData = JSON.parse(localStorage.getItem("user"));
-      console.log(userData);
 
       const config = {
         headers: {
@@ -114,7 +113,7 @@ export const useIndexStore = defineStore("index", {
           "X-User-Token": `${userData.token}`,
         },
       };
-      const url = `https://api.av100.ru/v3/user/{${id}}`;
+      const url = `https://api.av100.ru/v3/user/${id}`;
       const data = {
         id: `${id}`,
         login: "",
