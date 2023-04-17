@@ -16,6 +16,7 @@
 <script>
 import { mapStores } from 'pinia';
 import { useIndexStore } from '../stores/index'
+
 export default {
   data() {
     return {

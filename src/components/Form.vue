@@ -90,9 +90,12 @@
                         <div>
                             <v-sheet width="300">
                                 <v-sheet width="300"></v-sheet>
-                                <v-radio-group v-model="calltypeLocal">
-                                    <v-radio color="success" value="Push" name="messages" id="push_radio"
-                                        label="Push"></v-radio>
+                                <v-radio-group disabled v-model="calltypeLocal">
+                                    <div class="notWrapper">
+                                        <v-radio color="success" value="Push" name="messages" id="push_radio"
+                                            label="Push"></v-radio>
+                                        <p class="not">usable only on phone</p>
+                                    </div>
                                 </v-radio-group>
                                 <v-divider></v-divider>
                             </v-sheet>
@@ -103,7 +106,7 @@
                             </v-radio-group>
                             <v-sheet width="300">
                                 <v-text-field v-model="indexStore.user_settings.email" required :rules="rules"
-                                    label=".....@gmail.com"></v-text-field>
+                                    label=".....@gmail.com" :disabled="emailInput"></v-text-field>
                                 <v-divider></v-divider>
                             </v-sheet>
                         </div>
@@ -112,9 +115,8 @@
                                 <v-radio color="success" name="messages" value="telegram_id" label="Telegram ID"></v-radio>
                             </v-radio-group>
                             <v-sheet width="300">
-                                <v-sheet width="300"></v-sheet>
-                                <v-text-field v-model="indexStore.user_settings.telegramChat" required :rules="rules"
-                                    label="@example"></v-text-field>
+                                <v-text-field v-model="indexStore.user_settings.telegramChat" :disabled="telegramInput"
+                                    required :rules="rules" label="@example"></v-text-field>
                             </v-sheet>
                         </div>
                     </v-radio-group>
@@ -167,7 +169,8 @@
                 </div>
             </div>
             <v-sheet width="300px">
-                <v-btn color="green" block style="margin-left: 90%;" class="mt-2 mb-2">Save</v-btn>
+                <v-btn @click="save_profile_data" color="green" block style="margin-left: 90%;"
+                    class="mt-2 mb-2">Save</v-btn>
             </v-sheet>
         </div>
     </div>
@@ -178,6 +181,8 @@ import { mapStores } from 'pinia';
 export default {
     data() {
         return {
+            emailInput: true,
+            telegramInput: true,
             colorLenta: false,
             lenta: false,
             go_cart: '',
@@ -201,6 +206,15 @@ export default {
     computed: {
         ...mapStores(useIndexStore)
     },
+    methods: {
+        async save_profile_data() {
+            let id = this.$route.params.id
+            this.indexStore.save_profile(id)
+        }
+    },
+    mounted() {
+
+    },
     watch: {
         colorLenta: function (val) {
             this.indexStore.user_settings.colorlenta = val
@@ -212,7 +226,17 @@ export default {
             this.indexStore.user_settings.timezone = val
         },
         calltypeLocal: function (val) {
-            this.indexStore.user_settings.notifytype = val
+            if (val === 'telegram_id') {
+                this.telegramInput = false
+                this.emailInput = true
+            } else if (val === 'email') {
+                this.telegramInput = true
+                this.emailInput = false
+            } else {
+                this.telegramInput = true
+                this.emailInput = true
+                this.indexStore.user_settings.notifytype = val
+            }
         },
         go_cart: function (val) {
             this.indexStore.user_settings.sipid = val
@@ -347,4 +371,13 @@ export default {
 .radio_group_wrap {
     width: 300px;
 }
+
+.not {
+    color: red;
+    text-align: center;
+}
+
+.emailInput {}
+
+.telegramInput {}
 </style>

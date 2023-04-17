@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import router from "../router";
 
 export const useIndexStore = defineStore("index", {
   state: () => ({
@@ -102,6 +103,56 @@ export const useIndexStore = defineStore("index", {
       this.xhr_data = xhr;
       console.log(this.xhr_data);
     },
-    async save_profile() {},
+    async save_profile(id) {
+      const userData = JSON.parse(localStorage.getItem("user"));
+      console.log(userData);
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          "X-Api-Key": "8bcfb6e1-4fa8-4fae-872c-a435bbdbe8d9",
+          "X-User-Token": `${userData.token}`,
+        },
+      };
+      const url = `https://api.av100.ru/v3/user/{${id}}`;
+      const data = {
+        id: `${id}`,
+        login: "",
+        email: "",
+        fname: "",
+        lname: "",
+        phone: "",
+        companyname: "",
+        telegramChat: "",
+        clicks: 0,
+        expire: 0,
+        autoru: 0,
+        sendMethod: 0,
+        timezone: "",
+        timezonestring: "",
+        notifytype: "",
+        notifytypestring: "",
+        companyid: 0,
+        calltype: "",
+        enableaudio: true,
+        locklentaupdate: false,
+        erased: 0,
+        os: "",
+        sipid: "",
+        updatePeriod: 0,
+        filterMaxCount: 0,
+        turbosip: "",
+        turbosip5accessto: "",
+        turbosip20accessto: "",
+        colorlenta: true,
+        ignoreavg: true,
+        redirecttarget: 0,
+        lentacolortype: 0,
+      };
+      axios
+        .post(url, data, config)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    },
   },
 });
