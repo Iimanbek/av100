@@ -29,7 +29,8 @@
                             <span>Компания</span>
                         </div>
                         <v-sheet width="300">
-                            <v-text-field v-model="email" required :rules="rules"></v-text-field>
+                            <v-text-field v-model="indexStore.user_settings.companyname" required
+                                :rules="rules"></v-text-field>
                         </v-sheet>
                     </div>
                     <div class="form_inner">
@@ -37,7 +38,8 @@
                             <span>Логин</span>
                         </div>
                         <v-sheet width="300">
-                            <v-text-field v-model="email" required :rules="rules" label=".....@gmail.com"></v-text-field>
+                            <v-text-field v-model="indexStore.user_settings.login" required :rules="rules"
+                                label="....."></v-text-field>
                         </v-sheet>
                     </div>
                     <div class="form_inner">
@@ -45,7 +47,7 @@
                             <span>Номер телефонов</span>
                         </div>
                         <v-sheet width="300">
-                            <v-text-field v-model="email" required :rules="rules"></v-text-field>
+                            <v-text-field v-model="indexStore.user_settings.phone" required :rules="rules"></v-text-field>
                         </v-sheet>
                     </div>
                     <div class="form_inner">
@@ -53,7 +55,7 @@
                             <span>Имя</span>
                         </div>
                         <v-sheet width="300">
-                            <v-text-field v-model="email" required :rules="rules"></v-text-field>
+                            <v-text-field v-model="indexStore.user_settings.fname" required :rules="rules"></v-text-field>
                         </v-sheet>
                     </div>
                     <div class="form_inner">
@@ -61,7 +63,7 @@
                             <span>Фамилия</span>
                         </div>
                         <v-sheet width="300">
-                            <v-text-field v-model="email" required :rules="rules"></v-text-field>
+                            <v-text-field v-model="indexStore.user_settings.lname" required :rules="rules"></v-text-field>
                         </v-sheet>
                     </div>
                 </div>
@@ -78,32 +80,41 @@
                         <h4>Уведомления</h4>
                         <div>
                             <v-sheet width="300">
-                                <v-radio color="success" value="off_radio" label="Выкл" name="messages"
-                                    id="radio_off"></v-radio>
+                                <v-radio-group v-model="calltypeLocal">
+                                    <v-radio color="success" value="off_radio" label="Выкл" name="messages"
+                                        id="radio_off"></v-radio>
+                                </v-radio-group>
                                 <v-divider></v-divider>
                             </v-sheet>
                         </div>
                         <div>
                             <v-sheet width="300">
                                 <v-sheet width="300"></v-sheet>
-                                <v-radio color="success" value="Push" name="messages" id="push_radio"
-                                    label="Push"></v-radio>
+                                <v-radio-group v-model="calltypeLocal">
+                                    <v-radio color="success" value="Push" name="messages" id="push_radio"
+                                        label="Push"></v-radio>
+                                </v-radio-group>
                                 <v-divider></v-divider>
                             </v-sheet>
                         </div>
                         <div>
-                            <v-radio color="success" name="messages" value="email" label="Email"></v-radio>
+                            <v-radio-group v-model="calltypeLocal">
+                                <v-radio color="success" name="messages" value="email" label="Email"></v-radio>
+                            </v-radio-group>
                             <v-sheet width="300">
-                                <v-text-field v-model="email" required :rules="rules"
+                                <v-text-field v-model="indexStore.user_settings.email" required :rules="rules"
                                     label=".....@gmail.com"></v-text-field>
                                 <v-divider></v-divider>
                             </v-sheet>
                         </div>
                         <div>
-                            <v-radio color="success" name="messages" value="telegram_id" label="Telegram ID"></v-radio>
+                            <v-radio-group v-model="calltypeLocal">
+                                <v-radio color="success" name="messages" value="telegram_id" label="Telegram ID"></v-radio>
+                            </v-radio-group>
                             <v-sheet width="300">
                                 <v-sheet width="300"></v-sheet>
-                                <v-text-field required :rules="rules" label="@example"></v-text-field>
+                                <v-text-field v-model="indexStore.user_settings.telegramChat" required :rules="rules"
+                                    label="@example"></v-text-field>
                             </v-sheet>
                         </div>
                     </v-radio-group>
@@ -116,19 +127,19 @@
                 <div class="main_form">
                     <p class="form__inner__des">Выберите, каким образом будет открываться детальное представление выбранного
                         вами транспорта.</p>
-                    <v-radio-group>
+                    <v-radio-group v-model="go_cart">
                         <div class="radio_group_wrap">
-                            <v-radio color="success" value="in_window" label="В карточку текущем окне"
+                            <v-radio color="success" value="В карточку текущем окне" label="В карточку текущем окне"
                                 name="cards"></v-radio>
                             <v-divider></v-divider>
                         </div>
                         <div class="radio_group_wrap">
-                            <v-radio color="success" value="different_window" label="В карточку отдельном окне"
+                            <v-radio color="success" value="В карточку отдельном окне" label="В карточку отдельном окне"
                                 name="cards"></v-radio>
                             <v-divider></v-divider>
                         </div>
                         <div class="radio_group_wrap">
-                            <v-radio color="success" value="to_source" label="На источник" name="cards"></v-radio>
+                            <v-radio color="success" value="На источник" label="На источник" name="cards"></v-radio>
                         </div>
                     </v-radio-group>
                 </div>
@@ -147,21 +158,28 @@
                         </div>
                     </v-sheet>
                     <div>
-                        <v-checkbox color="#2dc574" border="#2dc574"
-                            label="Автоматически переходить к новым обновлениям"></v-checkbox>
+                        <v-checkbox color="#2dc574" label="Автоматически переходить к новым обновлениям"></v-checkbox>
                     </div>
                     <div>
-                        <v-checkbox color="#2dc574" label="Включить цвета в ленте"></v-checkbox>
+                        <v-checkbox color="#2dc574" v-model="lenta" label="Включить цвета в ленте"></v-checkbox>
                     </div>
                 </div>
             </div>
+            <v-sheet width="300px">
+                <v-btn color="green" block style="margin-left: 90%;" class="mt-2 mb-2">Save</v-btn>
+            </v-sheet>
         </div>
     </div>
 </template>
 <script>
+import { useIndexStore } from '../stores';
+import { mapStores } from 'pinia';
 export default {
     data() {
         return {
+            lenta: false,
+            go_cart: '',
+            calltypeLocal: '',
             ex7: 'red',
             ex8: 'primary',
             rules: [
@@ -178,6 +196,20 @@ export default {
             ],
         }
     },
+    computed: {
+        ...mapStores(useIndexStore)
+    },
+    watch: {
+        select: function (val) {
+            this.indexStore.user_settings.timezone = val
+        },
+        calltypeLocal: function (val) {
+            this.indexStore.user_settings.notifytype = val
+        },
+        go_cart: function (val) {
+            this.indexStore.user_settings.sipid = val
+        }
+    }
 }
 </script>
 <style lang="css">

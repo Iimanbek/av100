@@ -6,6 +6,7 @@
                 <v-text-field v-model="indexStore.login_data" label="Login" :rules="LoginRules"></v-text-field>
                 <v-text-field :rules="passwordRules" v-model="indexStore.password_data" label="Password"></v-text-field>
                 <v-btn @click="login" color="green" type="submit" block class="mt-2">Submit</v-btn>
+                <v-btn @click="() => { this.$router.push('/') }" color="green" block class="mt-2">Back</v-btn>
             </v-form>
         </v-sheet>
     </div>

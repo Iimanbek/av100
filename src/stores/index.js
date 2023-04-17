@@ -10,9 +10,45 @@ export const useIndexStore = defineStore("index", {
     user_num: "",
     xhr_data: "",
     text: "",
+    user_settings: {
+      id: 0,
+      login: "",
+      email: "",
+      fname: "",
+      lname: "",
+      phone: "",
+      companyname: "",
+      telegramChat: "",
+      clicks: 0,
+      expire: 0,
+      autoru: 0,
+      sendMethod: 0,
+      timezone: "",
+      timezonestring: "",
+      notifytype: "",
+      notifytypestring: "",
+      companyid: 0,
+      calltype: "",
+      enableaudio: true,
+      locklentaupdate: true,
+      erased: 0,
+      os: "",
+      sipid: "",
+      updatePeriod: 0,
+      filterMaxCount: 0,
+      turbosip: "",
+      turbosip5accessto: "",
+      turbosip20accessto: "",
+      colorlenta: true,
+      ignoreavg: true,
+      redirecttarget: 0,
+      lentacolortype: 0,
+    },
   }),
   actions: {
     async getUserAccaunt() {
+      // 9678622972
+      // 8680026651
       this.response = await axios.post(
         "https://api.av100.ru/v3/login",
         {
@@ -50,6 +86,11 @@ export const useIndexStore = defineStore("index", {
           console.log(this.status);
         }
       };
+      if (xhr.status == 200) {
+        this.text = `<p class="ok">We messaged you</p>`;
+      } else {
+        this.text = `<p class="not">There is a registrated number</p>`;
+      }
       xhr.onerror = function () {
         console.log("Request Error");
       };
