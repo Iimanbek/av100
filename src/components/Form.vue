@@ -213,7 +213,8 @@ export default {
         }
     },
     mounted() {
-
+        let id = this.$route.params.id
+        this.indexStore.get_user_data(id)
     },
     watch: {
         colorLenta: function (val) {

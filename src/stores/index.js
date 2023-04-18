@@ -153,5 +153,50 @@ export const useIndexStore = defineStore("index", {
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     },
+    async get_user_data(id) {
+      var userData = JSON.parse(localStorage.getItem("user"));
+      const URL = `https://api.av100.ru/v3/user/${id}`;
+      const res = await axios.get(URL, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": "8bcfb6e1-4fa8-4fae-872c-a435bbdbe8d9",
+          "X-User-Token": `${userData.token}`,
+        },
+      });
+      if (res.ok) {
+        this.id = res.data.id;
+        this.login = res.data.login;
+        this.email = res.data.email;
+        this.fname = res.data.fname;
+        this.lname = res.data.lname;
+        this.phone = res.data.phone;
+        this.companyname = res.data.companyname;
+        this.telegramChat = res.data.telegramChat;
+        this.clicks = res.data.clicks;
+        this.expire = res.data.expire;
+        this.autoru = res.data.autoru;
+        this.sendMethod = res.data.sendMethod;
+        this.timezone = res.data.timezone;
+        this.timezonestring = res.data.timezonestring;
+        this.notifytype = res.data.notifytype;
+        this.notifytypestring = res.data.notifytypestring;
+        this.companyid = res.data.companyid;
+        this.calltype = res.data.calltype;
+        this.enableaudio = res.data.enableaudio;
+        this.locklentaupdate = res.data.locklentaupdate;
+        this.erased = res.data.erased;
+        this.os = res.data.os;
+        this.sipid = res.data.sipid;
+        this.updatePeriod = res.data.updatePeriod;
+        this.filterMaxCount = res.data.filterMaxCount;
+        this.turbosip = res.data.turbosip;
+        this.turbosip5accessto = res.data.turbosip5accessto;
+        this.turbosip20accessto = res.data.turbosip20accessto;
+        this.colorlenta = res.data.colorlenta;
+        this.ignoreavg = res.data.ignoreavg;
+        this.redirecttarget = res.data.redirecttarget;
+        this.lentacolortype = res.data.lentacolortype;
+      }
+    },
   },
 });
