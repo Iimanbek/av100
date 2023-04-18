@@ -11,6 +11,7 @@ export const useIndexStore = defineStore("index", {
     user_num: "",
     xhr_data: "",
     text: "",
+    // user settings data for put ang get request
     user_settings: {
       id: 0,
       login: "",
@@ -47,6 +48,7 @@ export const useIndexStore = defineStore("index", {
     },
   }),
   actions: {
+    // login
     async getUserAccaunt() {
       // 9678622972
       // 8680026651
@@ -65,6 +67,7 @@ export const useIndexStore = defineStore("index", {
       );
       this.user_data = await this.response.data;
     },
+    //using xml request
     createUserAcc() {
       var xhr = new XMLHttpRequest();
       var json = JSON.stringify({
@@ -103,6 +106,10 @@ export const useIndexStore = defineStore("index", {
       this.xhr_data = xhr;
       console.log(this.xhr_data);
     },
+
+    // sending to the both functions id because can't get route value
+
+    // saving changes, there something wrong with request can get 200, couldn't fill parametr type "path"
     async save_profile(id) {
       const userData = JSON.parse(localStorage.getItem("user"));
 
@@ -153,6 +160,8 @@ export const useIndexStore = defineStore("index", {
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     },
+
+    // getting data of user for profile settings
     async get_user_data(id) {
       var userData = JSON.parse(localStorage.getItem("user"));
       const URL = `https://api.av100.ru/v3/user/${id}`;
@@ -163,8 +172,8 @@ export const useIndexStore = defineStore("index", {
           "X-User-Token": `${userData.token}`,
         },
       });
-      if (res.ok) {
-        this.id = res.data.id;
+      if (res.status == 200) {
+        this.id = `${id}`;
         this.login = res.data.login;
         this.email = res.data.email;
         this.fname = res.data.fname;
@@ -197,6 +206,7 @@ export const useIndexStore = defineStore("index", {
         this.redirecttarget = res.data.redirecttarget;
         this.lentacolortype = res.data.lentacolortype;
       }
+      console.log(res.data);
     },
   },
 });
