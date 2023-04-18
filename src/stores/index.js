@@ -156,7 +156,7 @@ export const useIndexStore = defineStore("index", {
         lentacolortype: this.user_settings.lentacolortype,
       };
       axios
-        .post(url, data, config)
+        .put(url, data, config)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     },
