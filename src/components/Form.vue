@@ -377,8 +377,4 @@ export default {
     color: red;
     text-align: center;
 }
-
-.emailInput {}
-
-.telegramInput {}
 </style>

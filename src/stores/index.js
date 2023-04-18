@@ -173,40 +173,41 @@ export const useIndexStore = defineStore("index", {
         },
       });
       if (res.status == 200) {
-        this.id = `${id}`;
-        this.login = res.data.login;
-        this.email = res.data.email;
-        this.fname = res.data.fname;
-        this.lname = res.data.lname;
-        this.phone = res.data.phone;
-        this.companyname = res.data.companyname;
-        this.telegramChat = res.data.telegramChat;
-        this.clicks = res.data.clicks;
-        this.expire = res.data.expire;
-        this.autoru = res.data.autoru;
-        this.sendMethod = res.data.sendMethod;
-        this.timezone = res.data.timezone;
-        this.timezonestring = res.data.timezonestring;
-        this.notifytype = res.data.notifytype;
-        this.notifytypestring = res.data.notifytypestring;
-        this.companyid = res.data.companyid;
-        this.calltype = res.data.calltype;
-        this.enableaudio = res.data.enableaudio;
-        this.locklentaupdate = res.data.locklentaupdate;
-        this.erased = res.data.erased;
-        this.os = res.data.os;
-        this.sipid = res.data.sipid;
-        this.updatePeriod = res.data.updatePeriod;
-        this.filterMaxCount = res.data.filterMaxCount;
-        this.turbosip = res.data.turbosip;
-        this.turbosip5accessto = res.data.turbosip5accessto;
-        this.turbosip20accessto = res.data.turbosip20accessto;
-        this.colorlenta = res.data.colorlenta;
-        this.ignoreavg = res.data.ignoreavg;
-        this.redirecttarget = res.data.redirecttarget;
-        this.lentacolortype = res.data.lentacolortype;
+        // this.id = `${id}`;
+        this.user_settings.login = res.data.login;
+        this.user_settings.email = res.data.email;
+        this.user_settings.fname = res.data.fname;
+        this.user_settings.lname = res.data.lname;
+        this.user_settings.phone = res.data.phone;
+        this.user_settings.companyname = res.data.companyname;
+        this.user_settings.telegramChat = res.data.telegramChat;
+        this.user_settings.clicks = res.data.clicks;
+        this.user_settings.expire = res.data.expire;
+        this.user_settings.autoru = res.data.autoru;
+        this.user_settings.sendMethod = res.data.sendMethod;
+        this.user_settings.timezone = res.data.timezone;
+        this.user_settings.timezonestring = res.data.timezonestring;
+        this.user_settings.notifytype = res.data.notifytype;
+        this.user_settings.notifytypestring = res.data.notifytypestring;
+        this.user_settings.companyid = res.data.companyid;
+        this.user_settings.calltype = res.data.calltype;
+        this.user_settings.enableaudio = res.data.enableaudio;
+        this.user_settings.locklentaupdate = res.data.locklentaupdate;
+        this.user_settings.erased = res.data.erased;
+        this.user_settings.os = res.data.os;
+        this.user_settings.sipid = res.data.sipid;
+        this.user_settings.updatePeriod = res.data.updatePeriod;
+        this.user_settings.filterMaxCount = res.data.filterMaxCount;
+        this.user_settings.turbosip = res.data.turbosip;
+        this.user_settings.turbosip5accessto = res.data.turbosip5accessto;
+        this.user_settings.turbosip20accessto = res.data.turbosip20accessto;
+        this.user_settings.colorlenta = res.data.colorlenta;
+        this.user_settings.ignoreavg = res.data.ignoreavg;
+        this.user_settings.redirecttarget = res.data.redirecttarget;
+        this.user_settings.lentacolortype = res.data.lentacolortype;
+      } else {
+        alert("please login again, something went wrong");
       }
-      console.log(res.data);
     },
   },
 });
