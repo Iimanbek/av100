@@ -32,6 +32,7 @@ export default {
     }),
     methods: {
         async login() {
+            //after loginning sending to the private page ang setting the data of user to the local storage
             await this.indexStore.getUserAccaunt()
             if (this.indexStore.response.status == 200) {
                 await this.$router.replace(`/user/${this.indexStore.user_data.user.id}`)

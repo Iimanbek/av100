@@ -24,6 +24,7 @@ const router = createRouter({
       path: "/user/:id",
       name: "user",
       component: () => import("../views/ProfileView.vue"),
+      //if there is user data in local storage, the private page is available
       redirect: user ? "" : "/login",
     },
   ],
