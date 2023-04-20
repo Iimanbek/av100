@@ -48,7 +48,7 @@ export const useIndexStore = defineStore("index", {
     },
   }),
   actions: {
-    // login
+    // login acc
     async getUserAccaunt() {
       // 9678622972
       // 8680026651
@@ -67,7 +67,7 @@ export const useIndexStore = defineStore("index", {
       );
       this.user_data = await this.response.data;
     },
-    //using xml request
+    //using xml request to create a user
     createUserAcc() {
       var xhr = new XMLHttpRequest();
       var json = JSON.stringify({

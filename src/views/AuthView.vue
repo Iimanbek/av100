@@ -28,8 +28,6 @@ export default {
       this.indexStore.createUserAcc()
     }
   },
-  mounted() {
-  },
   computed: {
     ...mapStores(useIndexStore)
   }

@@ -213,10 +213,12 @@ export default {
         }
     },
     mounted() {
+        //sending id of user for put and post request in the store 
         let id = this.$route.params.id
         this.indexStore.get_user_data(id)
     },
     watch: {
+        //sending values to the store
         colorLenta: function (val) {
             this.indexStore.user_settings.colorlenta = val
         },

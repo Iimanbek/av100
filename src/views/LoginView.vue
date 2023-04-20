@@ -39,8 +39,6 @@ export default {
             }
         }
     },
-    mounted() {
-    },
     computed: {
         ...mapStores(useIndexStore)
     },
